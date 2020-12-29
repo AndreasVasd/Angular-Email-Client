@@ -1,9 +1,9 @@
 <h3>Create an Account</h3>
 
-<form class="ui form" [formGroup]="authForm">
+<form (ngSubmit)="onSubmit()" class="ui form" [formGroup]="authForm">
     
     <!--Errors associated with each form input-->
-    <app-input inputType="text" label="Username"  [control]="authForm.get('username')"></app-input>
+    <app-input label="Username" inputType="text"  [control]="authForm.get('username')"></app-input>
 
     <app-input label="Password" inputType="password" [control]="authForm.get('password')"></app-input>
 
@@ -15,6 +15,8 @@
     authForm.errors" 
     class="ui red basic label">
         <p *ngIf="authForm.errors.passwordsDontMatch">Passwords don't match</p>
+        <p *ngIf="authForm.errors.noConnection">Check your Internet connection</p>
+        <p *ngIf="authForm.errors.unknownError">An unknown error occured</p>
     </div>
 
    <button class="ui submit button primary">Submit</button>
