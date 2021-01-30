@@ -3,6 +3,9 @@
 <form (ngSubmit)="onSubmit()" class="ui form" [formGroup]="authForm">
     
     <!--Errors associated with each form input-->
+    
+    <!-- In this case, label and type are Html attributes when control is DOM property-->
+    <!--Value of an attribute is a constant, value of a DOM property is a variable-->
     <app-input label="Username" inputType="text"  [control]="authForm.get('username')"></app-input>
 
     <app-input label="Password" inputType="password" [control]="authForm.get('password')"></app-input>
