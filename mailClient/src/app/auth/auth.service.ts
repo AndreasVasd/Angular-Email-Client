@@ -17,6 +17,11 @@ interface SignUpResponse {
   username: string;
 }
 
+interface SignedInResponse {
+  authenticated: boolean;
+  username: string;
+}
+
 @Injectable({
   providedIn: 'root'
 })
@@ -45,10 +50,10 @@ export class AuthService {
 
   //check if the user is already Signed In
   checkAuth() {
-    return this.http.get('https://api.angular-email.com/auth/signedin')
+    return this.http.get<SignedInResponse>('https://api.angular-email.com/auth/signedin')
     .pipe(
-      tap((response) => {
-        console.log(response);
+      tap(( { authenticated }) => {
+        this.signedin$.next(authenticated);
       })
     )
   }
