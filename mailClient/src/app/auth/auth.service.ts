@@ -57,4 +57,14 @@ export class AuthService {
       })
     )
   }
+
+  signout() {
+    return this.http.post<SignedInResponse>('https://api.angular-email.com/auth/signout', {}) //I add empty body (I always have to put body in post requests)
+    .pipe(
+      tap(() => {
+        //this.signedin$.next(!authenticated);
+        this.signedin$.next(false);
+      })
+    )
+  }
 }
