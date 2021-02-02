@@ -13,6 +13,11 @@ interface SignUpCredentails {
   passwordConfirmation: string;
 }
 
+interface SigninCredentials {
+  username: string;
+  password: string;
+}
+
 interface SignUpResponse {
   username: string;
 }
@@ -64,6 +69,15 @@ export class AuthService {
       tap(() => {
         //this.signedin$.next(!authenticated);
         this.signedin$.next(false);
+      })
+    )
+  }
+
+  signin(credentials: SigninCredentials) {
+    return this.http.post('https://api.angular-email.com/auth/signin', credentials) //we pass credentials as body
+    .pipe(
+      tap(() => {
+        this.signedin$.next(true);
       })
     )
   }
