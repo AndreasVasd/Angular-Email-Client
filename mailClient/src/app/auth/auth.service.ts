@@ -32,7 +32,7 @@ interface SignedInResponse {
 })
 export class AuthService {
 
-  signedin$ = new BehaviorSubject(false); //$ convention in Observables - we use behavior subject because it listens every new
+  signedin$ = new BehaviorSubject(null); //$ convention in Observables - we use behavior subject because it listens every new
                                           //subscription by giving the last emited value and it can get a default value (here it is the false value)
 
   constructor(private http: HttpClient) { }

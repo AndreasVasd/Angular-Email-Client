@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatchPassword } from '../Validators/match-password'; //add the MatchPassword custom Validator
 import { UniqueUsername } from '../Validators/unique-username';
 import { AuthService } from '../auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-signup',
@@ -31,7 +32,8 @@ export class SignupComponent implements OnInit {
 
   constructor(private matchPassword: MatchPassword,
               private uniqueUsername: UniqueUsername,
-              private authService: AuthService) { }
+              private authService: AuthService,
+              private router: Router) { }
 
   ngOnInit() {}
     
@@ -43,7 +45,8 @@ export class SignupComponent implements OnInit {
       .subscribe({
         next: response => {
           console.log(response); //to see what is returned in success case
-         //navigate to a route
+         //navigate to inbox route after successfull signup
+         this.router.navigateByUrl('/inbox'); 
         },
         error: (err) => {
           console.log(err); //to take info about the error response

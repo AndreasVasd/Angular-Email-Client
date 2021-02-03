@@ -15,7 +15,7 @@ export class AppComponent {
   }
 
   ngOnInit() {
-    //call the function which checks if the user is already SignedIn
+    //call the function which checks if the user is already SignedIn when the user visits the app
     this.authService.checkAuth().subscribe(() => {}); 
   }
 
