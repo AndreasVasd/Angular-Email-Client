@@ -1,0 +1,15 @@
+<div class="ui celled list">
+    <div class="item" *ngFor="let email of emails">
+        <a [routerLink] = "email.id" routerLinkActive="active"> <!--αν διαλεξω καποιο μειλ γινομαι redirect στο inbox/email:id(δε κανω specify το inbox μιας κ εκει ειμαι ηδη)-->
+        <!--το id το χω ηδη αντλησει απ το api call-->
+            <div class="content">
+            <div class="header">
+                {{email.subject}}
+            </div>
+            <p>
+                {{email.from}}
+            </p>
+        </div>
+        </a>
+    </div>
+</div>
