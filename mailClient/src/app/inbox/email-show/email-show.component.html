@@ -1,1 +1,11 @@
-<p>email-show works!</p>
+<div class="header" *ngIf="email"> <!--αν δε το βαλω θα βγει undefined το μειλ γτ οντως ειναι μεχρι να παρει τιμη απο το subscription-->
+    <div>
+       <h3>Subject: {{ email.subject }} </h3>
+        <div>
+            <b>From:</b> {{ email.from }}
+        </div>
+        <div>
+           <b>To:</b>  {{ email.to }}
+        </div>
+    </div>
+</div>
