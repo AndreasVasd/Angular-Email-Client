@@ -14,7 +14,13 @@ export class EmailShowComponent implements OnInit {
   email: Email;
 
 
-  constructor(private route: ActivatedRoute, private emailService: EmailService) { }
+  constructor(private route: ActivatedRoute, private emailService: EmailService) { 
+
+    this.route.data.subscribe(({ email }) => {
+      console.log(this.route);
+        this.email = email;        
+      });
+  }
 
   ngOnInit() {
     console.log(this.route);
@@ -28,7 +34,7 @@ export class EmailShowComponent implements OnInit {
     })*/
 
     //2ND WAY - with switchMap
-    this.route.params
+    /*this.route.params
       .pipe(
         switchMap(( { id }) => {
           return this.emailService.getEmail(id);
@@ -37,8 +43,9 @@ export class EmailShowComponent implements OnInit {
       .subscribe(email => {
         //console.log(email);
         this.email = email;
-      });
+      }); */
 
+      //3D WAY - RESOLVER
   }
 
 }
