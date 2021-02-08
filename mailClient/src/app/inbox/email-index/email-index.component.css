@@ -14,3 +14,19 @@ a.active:before {
     font-size: 20px;
     margin-right: 12px;
 }
+
+.content {
+    width: 90%;
+}
+
+.trim {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    width: 100%; 
+}
+
+.v1{
+    border-right: 4px solid cadetblue;
+    height: 500px;
+}
