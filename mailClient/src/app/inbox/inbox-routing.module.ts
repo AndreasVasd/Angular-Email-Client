@@ -4,12 +4,14 @@ import { HomeComponent } from './home/home.component';
 import { PlaceholderComponent } from '../inbox/placeholder/placeholder.component';
 import { EmailShowComponent } from '../inbox/email-show/email-show.component';
 import { EmailResolverService } from './email-resolver.service';
+import { NotFoundComponent } from './not-found/not-found.component';
 
 const routes: Routes = [
   { 
     path: '', 
     component: HomeComponent,
     children: [
+      { path: 'not-found', component: NotFoundComponent },
       { path: '', component: PlaceholderComponent },
       { path: ':id', component: EmailShowComponent,
         resolve: {
