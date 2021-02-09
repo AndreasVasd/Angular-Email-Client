@@ -3,7 +3,7 @@
 <!--Show the modal & the email form inside the modal-->
 <app-modal (dismiss)="showModal = false" *ngIf="showModal">
     <div modalTitle>Compose</div>
-    <app-email-form [email]="email"> <!--[email] is the property from app-email-form, "email" is the property in this ts file-->
+    <app-email-form [email]="email"> <!--[email] is the property from email-form, "email" is the property in this ts file-->
 
     </app-email-form>
 </app-modal>

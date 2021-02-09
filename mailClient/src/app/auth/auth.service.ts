@@ -22,6 +22,10 @@ interface SignUpResponse {
   username: string;
 }
 
+interface SigninResponse { 
+  username: string;
+}
+
 interface SignedInResponse {
   authenticated: boolean;
   username: string;
@@ -34,6 +38,7 @@ export class AuthService {
 
   signedin$ = new BehaviorSubject(null); //$ convention in Observables - we use behavior subject because it listens every new
                                           //subscription by giving the last emited value and it can get a default value (here it is the false value)
+  username= '';
 
   constructor(private http: HttpClient) { }
 
@@ -47,8 +52,9 @@ export class AuthService {
   signup(credentials: SignUpCredentails) { //credentials are form values (username, password, passwordConfirmation)
     return this.http.post<SignUpResponse>('https://api.angular-email.com/auth/signup', credentials) //what is returned from post request can be seen in Preview of Network tab
     .pipe(
-      tap(() => {
-        this.signedin$.next(true); //indicator thar now we are signed In
+      tap((response) => {
+        this.signedin$.next(true); //indicator that now we are signed In
+        this.username = response.username;
       })
     );
   } 
@@ -57,8 +63,9 @@ export class AuthService {
   checkAuth() {
     return this.http.get<SignedInResponse>('https://api.angular-email.com/auth/signedin')
     .pipe(
-      tap(( { authenticated }) => {
+      tap(( { authenticated, username }) => { //we pull out authenticated, username via destructuring from response obj
         this.signedin$.next(authenticated);
+        this.username = username;
       })
     )
   }
@@ -74,10 +81,11 @@ export class AuthService {
   }
 
   signin(credentials: SigninCredentials) {
-    return this.http.post('https://api.angular-email.com/auth/signin', credentials) //we pass credentials as body
+    return this.http.post<SigninResponse>('https://api.angular-email.com/auth/signin', credentials) //we pass credentials as body
     .pipe(
-      tap(() => {
+      tap((response) => {
         this.signedin$.next(true);
+        this.username = response.username; //το περιεχόμενο της μεταβλητής username να ισούται με το response.username
       })
     )
   }
