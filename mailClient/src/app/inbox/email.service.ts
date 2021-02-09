@@ -25,4 +25,9 @@ export class EmailService {
   getEmail(id: string) {
     return this.http.get<Email>(`${this.rootUrl}/emails/${id}`)
   }
+
+  //Send the user's email to the API
+  sendEmail(email: Email) {
+    return this.http.post<Email>(`${this.rootUrl}/emails`, email) //email is the body of post request
+  }
 }

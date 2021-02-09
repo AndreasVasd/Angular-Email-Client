@@ -27,6 +27,6 @@ a.active:before {
 }
 
 .v1{
-    border-right: 4px solid cadetblue;
+    border-right: 2px solid black;
     height: 500px;
 }

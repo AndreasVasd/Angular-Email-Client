@@ -1,9 +1,10 @@
 <button (click)="showModal = true" class="ui button inverted primary fluid">Compose</button>
-
 <!--Show the modal & the email form inside the modal-->
 <app-modal (dismiss)="showModal = false" *ngIf="showModal">
     <div modalTitle>Compose</div>
-    <app-email-form [email]="email"> <!--[email] is the property from email-form, "email" is the property in this ts file-->
+    <app-email-form (emailSubmit) = "onSubmit($event)" [email]="email"> <!--[email] is the property from email-form, "email" is the property in this ts file-->
 
     </app-email-form>
 </app-modal>
+
+<!--with emailSubmit we emit the form values...so we need to call a function that captures these values-->
